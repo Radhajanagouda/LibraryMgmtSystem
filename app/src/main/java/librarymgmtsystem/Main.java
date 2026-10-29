@@ -1,0 +1,68 @@
+package librarymgmtsystem;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        ILibrarySystem library = new LibrarySystem();
+
+        IBook book1 = new Book(
+                1,
+                "PeterPan",
+                "JamesMatthewBarrie",
+                "KidsClassics",
+                193
+        );
+
+        IBook book2 = new Book(
+                2,
+                "TheWizardOfOz",
+                "FrankBaum",
+                "KidsClassics",
+                394
+        );
+
+        library.addBook(book1, 11);
+        library.addBook(book2, 3);
+
+        System.out.println("Book Info:");
+
+        for (BooksInfo info : library.booksInfo()) {
+            System.out.println(
+                    "Book Name:" + info.getTitle()
+                            + ", Quantity:" + info.getQuantity()
+                            + ", Price:" + info.getPrice()
+            );
+        }
+
+        for (String category :
+                library.categoryTotalPrice().keySet()) {
+
+            System.out.println(
+                    "Category:" + category
+                            + ", Total Price:"
+                            + library.categoryTotalPrice()
+                            .get(category)
+            );
+        }
+
+        System.out.println(
+                "Category And Author With Count:"
+        );
+
+        for (CategoryAuthorWithCount item :
+                library.categoryAndAuthorWithCount()) {
+
+            System.out.println(
+                    "Category:" + item.getCategory()
+                            + ", Author:" + item.getAuthor()
+                            + ", Count:" + item.getCount()
+            );
+        }
+
+        System.out.println(
+                "Total Price: "
+                        + library.calculateTotal()
+        );
+    }
+}
